@@ -1,0 +1,69 @@
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap');
+
+/* common style */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* header */
+.title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+}
+
+/* image */
+ .image-container {
+    width: 100%;
+    height: 550px;
+} 
+.money-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+/* input part */
+.input-container {
+    background-color: #F8F8F8;
+    height: 550px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+    padding: 10px 0;
+  }
+
+.calculate-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 50px;
+    background-color: #59A5FF;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 700;
+    border: 0;  
+}
+
+.money-button-save {
+    padding: 5px 40px;
+    background-color: #59A5FF;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 700;
+    border: 0;  
+}
+.save-input {
+   width: 100px;
+}
