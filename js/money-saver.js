@@ -37,6 +37,7 @@ document.getElementById('calculate-button').addEventListener('click', function (
     //balance total
     const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
+    const balanceTotalAmount = parseFloat(balanceTotalText);
     const finalBalanceTotal = incomeInputNumber - finalTotalExpense;
     // const balanceTotalNumber = parseFloat(finalBalanceTotal);
     balanceTotal.innerText = finalBalanceTotal;
@@ -49,7 +50,7 @@ document.getElementById('calculate-button').addEventListener('click', function (
     foodExpenseInput.value = '';
     rentExpenseInput.value = '';
     clothExpenseInput.value = '';
-    incomeInput.value = '';
+    // incomeInput.value = '';
 })
 
 //save event handler
@@ -74,4 +75,12 @@ document.getElementById('button-save').addEventListener('click', function () {
     const savingAmountDisplayNumber = parseFloat(savingAmountDisplayText);
     savingAmountDisplay.innerText = savePercentageAmount;
 
+    //remaining balance calculation
+    const remainingBalance = document.getElementById('remaining-balance-total');
+    const remainingBalanceTotal = parseFloat(remainingBalance.innerText)
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const balanceTotalAmount = parseFloat(balanceTotalText);
+    remainingBalance.innerText = balanceTotalAmount - savePercentageAmount;
+    console.log(remainingBalanceTotal);
 })
