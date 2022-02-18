@@ -15,18 +15,24 @@ function getAmount(purpose) {
         failMessage.style.display = 'none';
         return amountEntry;
     }
-
-    // amount.value = '';
 }
-function getBalance() {
 
+function condition() {
+    isNaN(getAmount('food-expense-amount')) || isNaN(getAmount('rent-expense-amount')) || isNaN(getAmount('cloth-expense-amount')) || getAmount('food-expense-amount') == 0 || getAmount('rent-expense-amount') == 0 || getAmount('cloth-expense-amount') == 0 || getAmount('income-amount') == 0 || isNaN(getAmount('income-amount'))
+}
+
+function calculateExpenseBalance() {
     //total expenses
     const totalExpenseAmount = document.getElementById('total-expense-amount');
     const totalExpenseAmountText = totalExpenseAmount.innerText;
     const totalExpenseAmountNumber = parseFloat(totalExpenseAmountText);
     let newTotalExpenseAmount = getAmount('food-expense-amount') + getAmount('rent-expense-amount') + getAmount('cloth-expense-amount');
     const failMessage = document.getElementById('notify-fail');
-    if (isNaN(getAmount('food-expense-amount')) || isNaN(getAmount('rent-expense-amount')) || isNaN(getAmount('cloth-expense-amount')) || getAmount('food-expense-amount') == 0 || getAmount('rent-expense-amount') == 0 || getAmount('cloth-expense-amount') == 0 || getAmount('income-amount') == 0 || isNaN(getAmount('income-amount'))) {
+    const failMessageExpense = document.getElementById('notify-fail-expense');
+    if (newTotalExpenseAmount > getAmount('income-amount')) {
+        failMessageExpense.style.display = 'block';
+    }
+    if (condition()) {
         failMessage.style.display = 'block';
         totalExpenseAmount.innerText = 0;
     }
@@ -40,7 +46,7 @@ function getBalance() {
     const balanceTotalAmountText = balanceTotalAmount.innerText;
     const balanceTotalAmountNumber = parseFloat(balanceTotalAmountText);
     let newBalanceTotalAmount = getAmount('income-amount') - newTotalExpenseAmount;
-    if (isNaN(getAmount('food-expense-amount')) || isNaN(getAmount('rent-expense-amount')) || isNaN(getAmount('cloth-expense-amount')) || getAmount('food-expense-amount') == 0 || getAmount('rent-expense-amount') == 0 || getAmount('cloth-expense-amount') == 0 || getAmount('income-amount') == 0 || isNaN(getAmount('income-amount'))) {
+    if (condition()) {
         failMessage.style.display = 'block';
         balanceTotalAmount.innerText = 0;
     }
@@ -52,7 +58,7 @@ function getBalance() {
 
 //calculate event handler
 document.getElementById('calculate-button').addEventListener('click', function () {
-    getBalance();
+    calculateExpenseBalance();
 })
 
 
@@ -62,18 +68,9 @@ document.getElementById('calculate-button').addEventListener('click', function (
 
 //save event handler
 document.getElementById('button-save').addEventListener('click', function () {
-    //save input field
-    const saveAmount = document.getElementById('save-amount');
-    const saveAmountText = saveAmount.value;
-    const savingPercentage = parseFloat(saveAmountText);
-
-    // get income input field
-    const incomeAmount = document.getElementById('income-amount');
-    const incomeAmountText = incomeAmount.value;
-    const incomeAmountNumber = parseFloat(incomeAmountText);
 
     //percentage calculation
-    const savePercentageAmount = (incomeAmountNumber * savingPercentage) / 100;
+    const savePercentageAmount = (getAmount('income-amount') * getAmount('save-amount')) / 100;
     console.log(savePercentageAmount);
 
     //showing saving amount
@@ -88,6 +85,10 @@ document.getElementById('button-save').addEventListener('click', function () {
     const balanceTotalAmount = document.getElementById('balance-total-amount');
     const balanceTotalAmountText = balanceTotalAmount.innerText;
     const balanceTotalAmountNumber = parseFloat(balanceTotalAmountText);
+    const failMessageSave = document.getElementById('notify-fail-save');
+    if (savePercentageAmount > balanceTotalAmountNumber) {
+        failMessageSave.style.display = 'block';
+    }
     remainingBalance.innerText = balanceTotalAmountNumber - savePercentageAmount;
     console.log(remainingBalanceTotal);
 })
