@@ -1,6 +1,6 @@
-/*------------------
-expense calculation
--------------------*/
+/* ------------------------------
+expense and balance calculation
+-------------------------------- */
 function getAmount(purpose) {
     const failMessage = document.getElementById('notify-fail');
     const amount = document.getElementById(purpose);
@@ -11,7 +11,6 @@ function getAmount(purpose) {
         return 0;
     }
     else {
-
         failMessage.style.display = 'none';
         return amountEntry;
     }
@@ -31,6 +30,9 @@ function calculateExpenseBalance() {
     const failMessageExpense = document.getElementById('notify-fail-expense');
     if (newTotalExpenseAmount > getAmount('income-amount')) {
         failMessageExpense.style.display = 'block';
+    }
+    else {
+        failMessageExpense.style.display = 'none';
     }
     if (condition()) {
         failMessage.style.display = 'block';
@@ -61,7 +63,6 @@ document.getElementById('calculate-button').addEventListener('click', function (
     calculateExpenseBalance();
 })
 
-
 /* -----------------------------
     save calculation    
  ------------------------------- */
@@ -88,6 +89,9 @@ document.getElementById('button-save').addEventListener('click', function () {
     const failMessageSave = document.getElementById('notify-fail-save');
     if (savePercentageAmount > balanceTotalAmountNumber) {
         failMessageSave.style.display = 'block';
+    }
+    else {
+        failMessageSave.style.display = 'none';
     }
     remainingBalance.innerText = balanceTotalAmountNumber - savePercentageAmount;
     console.log(remainingBalanceTotal);
