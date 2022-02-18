@@ -6,6 +6,7 @@ function getAmount(purpose) {
     const amount = document.getElementById(purpose);
     const amountText = amount.value;
     const amountEntry = parseFloat(amountText);
+    amount.value = '';
     if (isNaN(amountEntry) || amountEntry < 0) {
         failMessage.style.display = 'block';
         return 0;
@@ -14,6 +15,7 @@ function getAmount(purpose) {
         failMessage.style.display = 'none';
         return amountEntry;
     }
+
 }
 
 function condition() {
