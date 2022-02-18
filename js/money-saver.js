@@ -41,7 +41,6 @@ function calculateExpenseBalance() {
     }
     else {
         totalExpenseAmount.innerText = newTotalExpenseAmount;
-        console.log(totalExpenseAmount.innerText)
     }
 
     //balance total
@@ -55,7 +54,6 @@ function calculateExpenseBalance() {
     }
     else {
         balanceTotalAmount.innerText = newBalanceTotalAmount;
-        console.log(newBalanceTotalAmount);
     }
 }
 
@@ -73,7 +71,6 @@ document.getElementById('button-save').addEventListener('click', function () {
 
     //percentage calculation
     const savePercentageAmount = (getAmount('income-amount') * getAmount('save-amount')) / 100;
-    console.log(savePercentageAmount);
 
     //showing saving amount
     const savingAmountDisplay = document.getElementById('saving-amount-total');
@@ -95,5 +92,4 @@ document.getElementById('button-save').addEventListener('click', function () {
         failMessageSave.style.display = 'none';
     }
     remainingBalance.innerText = balanceTotalAmountNumber - savePercentageAmount;
-    console.log(remainingBalanceTotal);
 })
