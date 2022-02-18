@@ -30,21 +30,29 @@
                 <!-- input part -->
                 <div class="col-lg-6">
                     <div class="input-container">
+                        <!-- calculate part -->
                         <h5 class="pt-3 text-center">Income</h5>
-                        <label for="income-input">Income:</label>
-                        <input type="text" id="income-input">
+                        <label for="income-amount">Income:</label>
+                        <input type="text" id="income-amount">
                         <h5 class="pt-2 text-center">Expenses</h5>
-                        <label for="food-expense-input">Food: </label>
-                        <input type="tel" id="food-expense-input"><br>
-                        <label for="rent-expense-input">Rent:</label>
-                        <input type="text" id="rent-expense-input"><br>
-                        <label for="cloth-expense-input">Clothes:</label>
-                        <input type="text" id="cloth-expense-input"><br>
+                        <label for="food-expense-amount">Food: </label>
+                        <input type="tel" id="food-expense-amount"><br>
+                        <label for="rent-expense-amount">Rent:</label>
+                        <input type="text" id="rent-expense-amount"><br>
+                        <label for="cloth-expense-amount">Clothes:</label>
+                        <input type="text" id="cloth-expense-amount"><br>
                         <button id="calculate-button" class="calculate-button">Calculate</button>
-                        <h5 class="text-center py-2">Total Expenses: <span id="total-expense">5000</span></h5>
-                        <h5 class="text-center">Balance: <span id="balance-total">4000</span></h5>
-                        <label for="save-input">Save:</label>
-                        <input type="text" id="save-input" class="save-input block"><span class="mx-2">%</span>
+                        <h5 class="text-center py-2">Total Expenses: <span id="total-expense-amount">5000</span></h5>
+                        <h5 class="text-center">Balance: <span id="balance-total-amount">4000</span></h5>
+
+                        <!-- notify section -->
+                        <div class="notify-section">
+                            <p id="notify-fail" class="notify">❌ Plese provide a valid number</p>
+                        </div>
+
+                        <!-- saving part -->
+                        <label for="save-amount">Save:</label>
+                        <input type="text" id="save-amount" class="save-amount block"><span class="mx-2">%</span>
                         <button id="button-save" class=" money-button-save">Save</button>
                         <h5 class=" text-center py-2">Saving amount: <span id="saving-amount-total">2000</span></h5>
                         <h5 class=" text-center pb-2">Remaining Balance: <span id="remaining-balance-total">00</span>

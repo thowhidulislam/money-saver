@@ -1,72 +1,79 @@
 /*------------------
 expense calculation
 -------------------*/
+function getAmount(purpose) {
+    const failMessage = document.getElementById('notify-fail');
+    const amount = document.getElementById(purpose);
+    const amountText = amount.value;
+    const amountEntry = parseFloat(amountText);
+    if (isNaN(amountEntry) || amountEntry < 0) {
+        failMessage.style.display = 'block';
+        return 0;
+    }
+    else {
 
-document.getElementById('calculate-button').addEventListener('click', function () {
-    // food input
-    const foodExpenseInput = document.getElementById('food-expense-input');
-    const foodExpenseInputText = foodExpenseInput.value;
-    const foodExpenseInputEntry = parseFloat(foodExpenseInputText);
-    console.log(foodExpenseInputEntry);
+        failMessage.style.display = 'none';
+        return amountEntry;
+    }
 
-    //rent input
-    const rentExpenseInput = document.getElementById('rent-expense-input');
-    const rentExpenseInputText = rentExpenseInput.value;
-    const rentExpenseInputEntry = parseFloat(rentExpenseInputText);
-    console.log(rentExpenseInputEntry);
-
-    //clothes input
-    const clothExpenseInput = document.getElementById('cloth-expense-input');
-    const clothExpenseInputText = clothExpenseInput.value;
-    const clothExpenseInputEntry = parseFloat(clothExpenseInputText);
-    console.log(clothExpenseInputEntry);
+    // amount.value = '';
+}
+function getBalance() {
 
     //total expenses
-    const totalExpense = document.getElementById('total-expense');
-    const totalExpenseText = totalExpense.innerText;
-    const finalTotalExpense = foodExpenseInputEntry + rentExpenseInputEntry + clothExpenseInputEntry;
-    parseFloat(finalTotalExpense);
-    totalExpense.innerText = finalTotalExpense;
-    console.log(totalExpense.innerText)
-
-    //income input
-    const incomeInput = document.getElementById('income-input');
-    const incomeInputText = incomeInput.value;
-    const incomeInputNumber = parseFloat(incomeInputText);
+    const totalExpenseAmount = document.getElementById('total-expense-amount');
+    const totalExpenseAmountText = totalExpenseAmount.innerText;
+    const totalExpenseAmountNumber = parseFloat(totalExpenseAmountText);
+    let newTotalExpenseAmount = getAmount('food-expense-amount') + getAmount('rent-expense-amount') + getAmount('cloth-expense-amount');
+    const failMessage = document.getElementById('notify-fail');
+    if (isNaN(getAmount('food-expense-amount')) || isNaN(getAmount('rent-expense-amount')) || isNaN(getAmount('cloth-expense-amount')) || getAmount('food-expense-amount') == 0 || getAmount('rent-expense-amount') == 0 || getAmount('cloth-expense-amount') == 0 || getAmount('income-amount') == 0 || isNaN(getAmount('income-amount'))) {
+        failMessage.style.display = 'block';
+        totalExpenseAmount.innerText = 0;
+    }
+    else {
+        totalExpenseAmount.innerText = newTotalExpenseAmount;
+        console.log(totalExpenseAmount.innerText)
+    }
 
     //balance total
-    const balanceTotal = document.getElementById('balance-total');
-    const balanceTotalText = balanceTotal.innerText;
-    const balanceTotalAmount = parseFloat(balanceTotalText);
-    const finalBalanceTotal = incomeInputNumber - finalTotalExpense;
-    // const balanceTotalNumber = parseFloat(finalBalanceTotal);
-    balanceTotal.innerText = finalBalanceTotal;
-    console.log(finalBalanceTotal);
+    const balanceTotalAmount = document.getElementById('balance-total-amount');
+    const balanceTotalAmountText = balanceTotalAmount.innerText;
+    const balanceTotalAmountNumber = parseFloat(balanceTotalAmountText);
+    let newBalanceTotalAmount = getAmount('income-amount') - newTotalExpenseAmount;
+    if (isNaN(getAmount('food-expense-amount')) || isNaN(getAmount('rent-expense-amount')) || isNaN(getAmount('cloth-expense-amount')) || getAmount('food-expense-amount') == 0 || getAmount('rent-expense-amount') == 0 || getAmount('cloth-expense-amount') == 0 || getAmount('income-amount') == 0 || isNaN(getAmount('income-amount'))) {
+        failMessage.style.display = 'block';
+        balanceTotalAmount.innerText = 0;
+    }
+    else {
+        balanceTotalAmount.innerText = newBalanceTotalAmount;
+        console.log(newBalanceTotalAmount);
+    }
+}
 
-
-
-
-    // clear the food expense input field
-    foodExpenseInput.value = '';
-    rentExpenseInput.value = '';
-    clothExpenseInput.value = '';
-    // incomeInput.value = '';
+//calculate event handler
+document.getElementById('calculate-button').addEventListener('click', function () {
+    getBalance();
 })
+
+
+/* -----------------------------
+    save calculation    
+ ------------------------------- */
 
 //save event handler
 document.getElementById('button-save').addEventListener('click', function () {
     //save input field
-    const saveAmount = document.getElementById('save-input');
+    const saveAmount = document.getElementById('save-amount');
     const saveAmountText = saveAmount.value;
     const savingPercentage = parseFloat(saveAmountText);
 
     // get income input field
-    const incomeInput = document.getElementById('income-input');
-    const incomeInputText = incomeInput.value;
-    const incomeInputNumber = parseFloat(incomeInputText);
+    const incomeAmount = document.getElementById('income-amount');
+    const incomeAmountText = incomeAmount.value;
+    const incomeAmountNumber = parseFloat(incomeAmountText);
 
     //percentage calculation
-    const savePercentageAmount = (incomeInputNumber * savingPercentage) / 100;
+    const savePercentageAmount = (incomeAmountNumber * savingPercentage) / 100;
     console.log(savePercentageAmount);
 
     //showing saving amount
@@ -78,9 +85,9 @@ document.getElementById('button-save').addEventListener('click', function () {
     //remaining balance calculation
     const remainingBalance = document.getElementById('remaining-balance-total');
     const remainingBalanceTotal = parseFloat(remainingBalance.innerText)
-    const balanceTotal = document.getElementById('balance-total');
-    const balanceTotalText = balanceTotal.innerText;
-    const balanceTotalAmount = parseFloat(balanceTotalText);
-    remainingBalance.innerText = balanceTotalAmount - savePercentageAmount;
+    const balanceTotalAmount = document.getElementById('balance-total-amount');
+    const balanceTotalAmountText = balanceTotalAmount.innerText;
+    const balanceTotalAmountNumber = parseFloat(balanceTotalAmountText);
+    remainingBalance.innerText = balanceTotalAmountNumber - savePercentageAmount;
     console.log(remainingBalanceTotal);
 })
